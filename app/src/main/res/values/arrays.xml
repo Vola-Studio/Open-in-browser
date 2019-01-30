@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="unsupported_packages">
+        <item>com.android.chrome,357809952</item>
+        <item>org.mozilla.firefox,2015604361</item>
+    </string-array>
+    <string-array name="better_in_standalone_packages">
+        <item>com.duckduckgo.mobile.android</item>
+        <item>org.mozilla.focus</item>
+    </string-array>
+    <string-array name="incognito_flags">
+        <!-- app/src/main/java/org/chromium/chrome/browser/IntentHandler.java -->
+        <item>com.google.android.apps.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB</item>
+        <!-- Guessing flags below. 1/28/2019 -->
+        <item>android.support.customtabs.extra.EXTRA_OPEN_NEW_INCOGNITO_TAB</item>
+        <item>android.support.customtabs.extra.OPEN_NEW_INCOGNITO_TAB</item>
+        <item>android.support.customtabs.extra.open_new_incognito_tab</item>
+        <item>org.mozilla.firefox.extra.OPEN_NEW_INCOGNITO_TAB</item>
+        <item>org.mozilla.firefox.extra.open_new_incognito_tab</item>
+    </string-array>
+</resources>

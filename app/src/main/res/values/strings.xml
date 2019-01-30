@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Open In Browser</string>
+
+    <string name="notification_open_in_browser_title">Link copied</string>
+    <string name="notification_action_open_in_private">Open in incognito</string>
+    <string name="notification_channel_name">Open Links</string>
+    <string name="notification_channel_description">Notify when links copied</string>
+    <string name="notification_open_in_browser_text">Touch to open %1$s</string>
+    <string name="dialog_open_in_ICT">Open in Custom Tabs</string>
+    <string name="dialog_open_in_trusted">Open in</string>
+    <string name="dialog_no_browser_found">No available browser found</string>
+    <string name="dialog_is_support_maybe">likely without Incognito mode</string>
+    <string name="dialog_is_support_no">without incognito mode</string>
+    <string name="accessibility_dialog_browser_icon">Icon of browser</string>
+    <string name="notification_background_channel">Background service</string>
+    <string name="notification_background_channel_description">This notification is used to keep Open In Browser in background to
+        catch new links in the clipboard
+    </string>
+</resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:paddingStart="8dp"
+              android:paddingEnd="8dp"
+              android:paddingTop="16dp"
+              android:paddingBottom="16dp"
+              android:layout_width="match_parent"
+              android:layout_height="72dp"
+              android:background="@drawable/ripple"
+              android:clickable="true"
+              android:id="@+id/dialog_row"
+>
+    <ImageView
+            android:id="@+id/browser_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            tools:src="@tools:sample/avatars" android:layout_marginStart="8dp"
+            android:contentDescription="@string/accessibility_dialog_browser_icon"/>
+    <LinearLayout
+            android:id="@+id/layout_with_caption"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:id="@+id/browser_name_with_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="@tools:sample/lorem" android:paddingStart="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:firstBaselineToTopHeight="16dp"
+                android:textColor="@android:color/primary_text_light" android:paddingEnd="16dp"/>
+        <TextView
+                android:id="@+id/caption_maybe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="@string/dialog_is_support_maybe"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="#ff9100" android:text="@string/dialog_is_support_maybe" android:paddingStart="16dp"
+                android:textSize="14sp" android:lastBaselineToBottomHeight="-20dp" android:paddingEnd="16dp"/>
+        <TextView
+                android:id="@+id/caption_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="@string/dialog_is_support_maybe"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="#ff1744" android:text="@string/dialog_is_support_maybe" android:paddingStart="16dp"
+                android:textSize="14sp" android:lastBaselineToBottomHeight="-20dp" android:paddingEnd="16dp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/layout_without_caption"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:id="@+id/browser_name_without_caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="@tools:sample/lorem" android:paddingStart="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+    </LinearLayout>
+    <TextView
+            android:id="@+id/package_name"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:text="@tools:sample/lorem"/>
+</LinearLayout>

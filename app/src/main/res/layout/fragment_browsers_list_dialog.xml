@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DialogContainer" android:orientation="vertical">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="56dp" android:id="@+id/open_in_custom_tab"
+            android:paddingStart="16dp" android:textSize="16sp" android:firstBaselineToTopHeight="36dp"
+            android:text="@string/dialog_open_in_ICT" android:paddingEnd="16dp"/>
+    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                                               xmlns:tools="http://schemas.android.com/tools"
+                                               android:id="@+id/list_ict"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+                                               android:clipToPadding="false"
+                                               android:paddingBottom="@dimen/list_item_spacing_half"
+                                               android:paddingTop="@dimen/list_item_spacing_half"
+                                               tools:context=".BrowsersListDialogFragment"
+                                               tools:listitem="@layout/fragment_browsers_list_dialog_item"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="38dp" android:id="@+id/open_in_trusted"
+            android:paddingStart="16dp" android:textSize="16sp" android:firstBaselineToTopHeight="36dp"
+            android:text="@string/dialog_open_in_trusted" android:paddingEnd="16dp"/>
+    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                                               xmlns:tools="http://schemas.android.com/tools"
+                                               android:id="@+id/list_trusted"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+                                               android:clipToPadding="false"
+                                               android:paddingBottom="@dimen/list_item_spacing_half"
+                                               android:paddingTop="@dimen/list_item_spacing_half"
+                                               tools:context=".BrowsersListDialogFragment"
+                                               tools:listitem="@layout/fragment_browsers_list_dialog_item"
+    />
+</androidx.appcompat.widget.LinearLayoutCompat>

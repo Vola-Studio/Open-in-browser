@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">在浏览器中打开</string>
+    <string name="notification_action_open_in_private">用隐身模式打开</string>
+    <string name="notification_channel_name">打开链接</string>
+    <string name="notification_channel_description">在链接复制到剪贴板时的提醒</string>
+    <string name="notification_open_in_browser_title">复制了链接</string>
+    <string name="notification_open_in_browser_text">点击打开 %1$s</string>
+    <string name="dialog_open_in_ICT">在自定义标签中打开</string>
+    <string name="dialog_open_in_trusted">在以下浏览器中打开</string>
+    <string name="dialog_no_browser_found">没有找到适合的浏览器</string>
+    <string name="dialog_is_support_maybe">隐身模式可能不可用</string>
+    <string name="accessibility_dialog_browser_icon">浏览器的图标</string>
+    <string name="dialog_is_support_no">隐身模式不可用</string>
+    <string name="notification_background_channel">后台服务</string>
+    <string name="notification_background_channel_description">这个通知是用来保持本应用可以监听剪贴板中的新链接</string>
+</resources>
