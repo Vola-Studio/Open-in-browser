@@ -14,4 +14,5 @@
     <string name="dialog_is_support_no">隐身模式不可用</string>
     <string name="notification_background_channel">后台服务</string>
     <string name="notification_background_channel_description">这个通知是用来保持本应用可以监听剪贴板中的新链接</string>
+    <string name="notification_open_in_managed_profile">在工作模式中打开</string>
 </resources>

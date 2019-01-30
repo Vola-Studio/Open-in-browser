@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>
 
     <application
             android:allowBackup="true"
@@ -16,29 +17,41 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <receiver
+                android:name=".CrossProfileHelper"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="xyz.vola.openinbrowser.REQUEST_CROSS_PROFILE"/>
+                <action android:name="xyz.vola.openinbrowser.RECEIVE_CROSS_PROFILE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+        <receiver
                 android:name=".AutoStartService"
                 android:enabled="true"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.MY_PACKAGE_SUSPENDED" />
-                <action android:name="android.intent.action.MY_PACKAGE_UNSUSPENDED" />
-                <!--<action android:name="vola.xyz.openinbrowser.START" />-->
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_SUSPENDED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_UNSUSPENDED"/>
+                <!-- <action android:name="vola.xyz.openinbrowser.START" /> -->
             </intent-filter>
         </receiver>
 
         <activity
                 android:name=".DialogContainer"
-                android:exported="true"
                 android:excludeFromRecents="true"
+                android:exported="true"
                 android:theme="@style/TransparentTheme">
         </activity>
 
         <service
                 android:name=".ClipboardListener"
                 android:enabled="true"
-                android:exported="true">
+                android:exported="true"
+                android:singleUser="true">
         </service>
     </application>
+
 </manifest>

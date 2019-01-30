@@ -11,6 +11,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.IBinder
+import android.os.UserHandle
+import android.os.UserManager
 import android.util.Log
 import android.widget.Toast
 import java.lang.Exception
@@ -25,6 +27,11 @@ class ClipboardListener : Service() {
         (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).addPrimaryClipChangedListener(listener)
         createNotificationChannel()
         startForeground(1, createNotification())
+        if (!(getSystemService(UserManager::class.java)).isSystemUser) {
+            Log.d("Listener", "Stop self in non-system user")
+            stopForeground(true)
+            stopSelf()
+        }
     }
 
     private fun createNotificationChannel() {

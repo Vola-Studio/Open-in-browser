@@ -16,4 +16,5 @@
     <string name="notification_background_channel_description">This notification is used to keep Open In Browser in background to
         catch new links in the clipboard
     </string>
+    <string name="notification_open_in_managed_profile">Open in Work Profile</string>
 </resources>

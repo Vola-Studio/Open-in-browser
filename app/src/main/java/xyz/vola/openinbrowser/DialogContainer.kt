@@ -2,6 +2,7 @@ package xyz.vola.openinbrowser
 
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.net.Uri
@@ -24,7 +25,6 @@ class DialogContainer : AppCompatActivity(), BrowsersListDialogFragment.Listener
         super.onCreate(savedInstanceState)
         Log.d(tag, "onCreate")
         setContentView(R.layout.activity_dialog_container)
-//        LocalBroadcastManager.getInstance(this).sendBroadcast(Intent("vola.xyz.openinbrowser.START"))
         ContextCompat.startForegroundService(this, Intent(this, ClipboardListener::class.java))
         OpenInBrowserNotification.cancel(this)
 
@@ -68,7 +68,7 @@ class DialogContainer : AppCompatActivity(), BrowsersListDialogFragment.Listener
         } else {
             /** 打开 Custom tab，并尝试使用 Incognito 模式 */
             CustomTabsIntent.Builder().build().apply {
-//                resources.getStringArray(R.array.incognito_flags).forEach { x -> intent.putExtra(x, true) }
+                resources.getStringArray(R.array.incognito_flags).forEach { x -> intent.putExtra(x, true) }
                 intent.`package` = packageName
             }.launchUrl(this, url)
         }

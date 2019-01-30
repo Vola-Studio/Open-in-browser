@@ -4,12 +4,14 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.ComponentName
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.Icon
-import android.media.AudioAttributes
-import android.media.RingtoneManager
 import android.net.Uri
+import android.os.UserManager
 
 object OpenInBrowserNotification {
     private const val NOTIFICATION_TAG = "OpenInBrowser"
@@ -21,7 +23,7 @@ object OpenInBrowserNotification {
      * @see .cancel
      */
     fun notify(
-        context: Context,
+        context: ContextWrapper,
         url: Uri
     ) {
         createNotificationChannel(context)
@@ -55,6 +57,30 @@ object OpenInBrowserNotification {
                     )
                 ).build()
             )
+            .apply {
+                if (context.packageManager.checkPermission(
+                        "android.permission.INTERACT_ACROSS_USERS",
+                        "xyz.vola.openinbrowser"
+                    ) == PackageManager.PERMISSION_GRANTED &&
+                    context.getSystemService(UserManager::class.java).userProfiles.size > 1
+                ) {
+                    addAction(
+                        Notification.Action.Builder(
+                            Icon.createWithResource(
+                                context,
+                                R.drawable.ic_notification_action_open_in_managed_profile
+                            ),
+                            context.getString(R.string.notification_open_in_managed_profile),
+                            PendingIntent.getBroadcast(context, 0, Intent(REQUEST_CROSS_PROFILE).apply {
+                                data = url
+                                component = ComponentName("vola.xyz.openinbrowser", "CrossProfileHelper")
+                                setClass(context, CrossProfileHelper::class.java)
+                                return@apply
+                            }, PendingIntent.FLAG_UPDATE_CURRENT)
+                        ).build()
+                    )
+                }
+            }
             // Automatically dismiss the notification when it is touched.
             .setAutoCancel(true)
             .setTimeoutAfter(30 * 1000)
