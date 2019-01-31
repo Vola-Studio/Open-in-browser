@@ -60,6 +60,10 @@ class BrowsersListDialogFragment : BottomSheetDialogFragment() {
             Toast.makeText(context, R.string.dialog_no_browser_found, Toast.LENGTH_SHORT).show()
             dismiss()
         }
+        if (standalone.size + ct.size == 1) {
+            val packageName = standalone.firstOrNull() ?: ct.firstOrNull()
+            mListener?.onBrowsersClicked(packageName!!)
+        }
     }
 
     override fun onAttach(context: Context) {
