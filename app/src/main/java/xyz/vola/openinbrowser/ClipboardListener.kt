@@ -11,7 +11,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.IBinder
-import android.os.UserHandle
 import android.os.UserManager
 import android.util.Log
 import android.widget.Toast
@@ -20,17 +19,16 @@ import java.lang.Exception
 
 class ClipboardListener : Service() {
     private val listener = OnPrimaryClipChangedListener { performClipboardCheck() }
-    private val mTAG = "BackgroundService"
+    private val tag = "ClipboardListener"
+    private var isSystemUser = true
 
     override fun onCreate() {
-        Log.d("Listener", "Created")
+        Log.d(tag, "Created")
         (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).addPrimaryClipChangedListener(listener)
         createNotificationChannel()
         startForeground(1, createNotification())
         if (!(getSystemService(UserManager::class.java)).isSystemUser) {
-            Log.d("Listener", "Stop self in non-system user")
-            stopForeground(true)
-            stopSelf()
+            isSystemUser = false
         }
     }
 
@@ -40,16 +38,18 @@ class ClipboardListener : Service() {
         val name = getString(R.string.notification_background_channel)
         val descriptionText = getString(R.string.notification_background_channel_description)
         val importance = NotificationManager.IMPORTANCE_NONE
-        val channel = NotificationChannel(mTAG, name, importance).apply {
+        val channel = NotificationChannel(tag, name, importance).apply {
             description = descriptionText
         }
         notificationManager.createNotificationChannel(channel)
     }
 
     private fun createNotification() =
-        Notification.Builder(this, mTAG)
+        Notification.Builder(this, tag)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.notification_background_channel_description))
+            // Don't do it. Let it be broken. Let system generate one.
+            // .setSmallIcon(R.drawable.notification_icon_background)
             .build()
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -61,12 +61,12 @@ class ClipboardListener : Service() {
     }
 
     private fun performClipboardCheck() {
+        if (!isSystemUser) return
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         if (clipboardManager.hasPrimaryClip()) {
             val clipData = clipboardManager.primaryClip
             if (clipData!!.description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                 val text = clipData.getItemAt(0).text.toString()
-                Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
                 val url = findUrl(text)
                 if (url != null) {
                     OpenInBrowserNotification.notify(this, url)

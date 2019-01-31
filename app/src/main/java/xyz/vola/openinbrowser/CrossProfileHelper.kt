@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.UserManager
 import android.util.Log
+import android.widget.Toast
 
 const val REQUEST_CROSS_PROFILE = "xyz.vola.openinbrowser.REQUEST_CROSS_PROFILE"
 const val RECEIVE_CROSS_PROFILE = "xyz.vola.openinbrowser.RECEIVE_CROSS_PROFILE"
@@ -24,6 +25,7 @@ class CrossProfileHelper : BroadcastReceiver() {
             }
             RECEIVE_CROSS_PROFILE -> {
                 if (!userManager.isSystemUser) {
+                    Toast.makeText(context, R.string.notification_open_in_managed_profile, Toast.LENGTH_SHORT)
                     context.startActivity(Intent(Intent.ACTION_VIEW).apply {
                         data = intent.data
                         addFlags(FLAG_ACTIVITY_NEW_TASK)

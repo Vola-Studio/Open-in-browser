@@ -7,10 +7,12 @@ import android.util.Log
 import androidx.core.content.ContextCompat.startForegroundService
 
 class AutoStartService : BroadcastReceiver() {
+    private val tag = "AutoStartSerivce"
     override fun onReceive(context: Context, intent: Intent) {
         with(context) {
-            Log.d("AutoStart", "Starting")
+            Log.d(tag, "Starting")
             startForegroundService(this, Intent(this, ClipboardListener::class.java))
+            Log.d(tag, "After start foreground service")
         }
     }
 }
