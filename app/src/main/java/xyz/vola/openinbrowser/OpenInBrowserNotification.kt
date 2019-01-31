@@ -35,6 +35,8 @@ object OpenInBrowserNotification {
             .setSmallIcon(R.drawable.ic_stat_open_in_browser)
             .setContentTitle(title)
             .setContentText(text)
+            .setStyle(Notification.BigTextStyle()
+                .bigText(text))
             // 可访问性标题
             .setTicker(title)
 

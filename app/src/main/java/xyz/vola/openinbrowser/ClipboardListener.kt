@@ -53,7 +53,7 @@ class ClipboardListener : Service() {
             .build()
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        return Service.START_STICKY
+        return Service.START_REDELIVER_INTENT
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -67,24 +67,10 @@ class ClipboardListener : Service() {
             val clipData = clipboardManager.primaryClip
             if (clipData!!.description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                 val text = clipData.getItemAt(0).text.toString()
-                val url = findUrl(text)
+                val url = URLGuess(this, text)
                 if (url != null) {
-                    OpenInBrowserNotification.notify(this, url)
+                    OpenInBrowserNotification.notify(this, Uri.parse(url))
                 }
-            }
-        }
-    }
-
-    private val includeScheme = Regex("(https?://([a-zA-Z0-9\\./_]|\\+|-|&|=|\\?|#)+)")
-    private val notIncludeScheme = Regex("(([a-zA-Z0-9]|-|_)+\\.([a-zA-Z0-9\\./]|\\+|-|&|=|\\?|#|_)+)")
-    private fun findUrl(x: String): Uri? {
-        val value = includeScheme.findAll(x).firstOrNull()?.groupValues?.get(0)
-        val value1 = notIncludeScheme.findAll(x).firstOrNull()?.groupValues?.get(0)
-        return (value ?: value1).let {
-            return@let try {
-                Uri.parse(it)
-            } catch (e: Exception) {
-                null
             }
         }
     }
