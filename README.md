@@ -25,7 +25,7 @@ Download it as [app-debug.apk](https://github.com/Vola-Studio/Open-in-browser/re
 
 [Wonder why? Click here](https://developer.android.com/about/versions/pie/power#buckets)
 
-### If you use managede profile
+### If you use managed profile
 
 > adb shell am start --user 10 xyz.vola.openinbrowser/.DialogContainer
 >
@@ -36,5 +36,5 @@ Download it as [app-debug.apk](https://github.com/Vola-Studio/Open-in-browser/re
 ## Supported browser
 
 -   Browsers that supports Custom Tabs (Chrome, Firefox, etc...)
--   [Duckduckgo](https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android)
--   [Firefox focus](https://play.google.com/store/apps/details?id=org.mozilla.focus)
+-   [DuckDuckGo](https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android)
+-   [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus)
