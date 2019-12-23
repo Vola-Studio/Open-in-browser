@@ -1,12 +1,14 @@
 # Open in browser
 
+> This project is dead since in Android 10 there is no background access to the clipboard for non-IME apps.
+
 Listen to your clipboard. Open it in browser.
 
 In incognito mode, or in managed profile.
 
 ## Requirements
 
--   Android version: At least **Android 9** (API level 28)
+-   Android version: **Only Android 9** (API level 28)
 -   Permission _android.permission.INTERACT_ACROSS_USERS_ if you want to open in managed profile
 
 ## Screenshot
